@@ -3,8 +3,9 @@ class City:
         self.name = name
         self.routes = {}
 
-    def add_routes(self,city, price_info):
+    def add_routes(self, city, price_info):
         self.routes[city] = price_info
+
 
 def dijikstra(starting_city, other_cities):
     routes_from_city = {}
@@ -19,7 +20,6 @@ def dijikstra(starting_city, other_cities):
         for city, price_info in current_city.routes.items():
             if routes_from_city[city][0] > price_info + routes_from_city[current_city][0]:
                 routes_from_city[city] = [price_info + routes_from_city[current_city][0], current_city]
-
         #
         current_city = None
         cheapest_route_from_current_city = float('inf')
@@ -29,6 +29,8 @@ def dijikstra(starting_city, other_cities):
                 current_city = city
 
     return routes_from_city
+
+
 if __name__ == '__main__':
     atlanta = City("Atlanta")
     boston = City("Boston")
@@ -47,3 +49,7 @@ if __name__ == '__main__':
     routes = dijikstra(atlanta, [boston, chicago, denver, el_paso])
     for city, price_info in routes.items():
         print(str(city.name) + "->" + str(price_info[0]))
+
+"""
+说明：
+"""
